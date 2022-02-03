@@ -12,9 +12,11 @@ def is_palindrome(string: str) -> bool:
     return string ==  string[::-1]
 
 def run():
-    word = 1000
+    # Local variable
     print(is_palindrome(word))
 
 
 if __name__ == "__main__":
+    #Global variable
+    word = input("Escribe una palabra: ")
     run()
