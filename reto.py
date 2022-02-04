@@ -1,8 +1,4 @@
 
-
-
-
-
 import os 
 def decorator(func):
     def wrapper():
