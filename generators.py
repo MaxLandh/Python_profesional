@@ -37,12 +37,15 @@ def fibo_gen(max = 0):
 
 
 if __name__ == '__main__':
-    fibonacci = fibo_gen() #Se inicializa el generador, igual que como con clases.
-    try:
-        maxim = int(input('Type up to which Fibonacci number you want to get: '))
-    except  ValueError:
-        print('Please, type a number integer positive')
-          
+    
+    while True:
+        try:
+            maxim = int(input('Type up to which Fibonacci number you want to get: '))
+            break
+        except  ValueError:
+            print('Please, type a number integer positive')
+
+    fibonacci = fibo_gen(max=maxim) #Se inicializa el generador, igual que como con clases.      
     for element in fibonacci:
         print(element)
         time.sleep(0.5)
