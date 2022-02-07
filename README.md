@@ -102,7 +102,7 @@ Para poder identificar un closure es lo siguiente:
 * La nested function debe referenciar un valor de un scope superior.
 * La función que envuelve a la nested function debe retornarla también.
 
-'''
+```
 def main():
     a = 1
     def nested():
@@ -112,7 +112,7 @@ def main():
 
 my_func = main()
 my_func()
-'''
+```
 
 
 ## ¿Donde aparecen los closures?
