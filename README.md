@@ -39,5 +39,34 @@ Los lenguajes de tipado dinámico son los que levantan los errores de tipo tiemp
 
 No hay un consenso en la comunidad sobre las diferencias entre un lenguaje programación fuerte o débil. Pero para conveniencia de este curso definiremos que un lenguaje de programación de tipado fuerte son los que tratan con más severidad a los diferentes tipos de datos. Y los lenguajes de tipado débil son los que tratan con menos severidad a estos tipos de datos.
 
+## Tipado estático en Python
 
+Python es un lenguaje de tipado dinamico fuerte. Para poder definir las variables y su tipo al momento de programar, se realiza con la sintaxis de dos puntos seguido por su tipo
 
+Ejemplo
+
+> numero: int = 5
+
+> cadena: str = "Hola mundo"
+
+Para estructuras de datos complejas como diccionarios, listas o tuplas necesitaremos importar la clase Dict, List, Tuple del modulo typing
+
+> from typing import Dict, List, Tuple
+> lista: List = []
+> diccionario: Dict = {}
+> tupla: Tuple = ()
+
+Para definir el tipo de valor que retornara una función se logra con la sintaxis de ->. Veamos
+
+> def function() -> type:
+
+Las ventajas de convertir a Python sus variables en estáticas es mas claridad a la hora de escribir código. Saber en donde se encuentran los errores y que sea entendible para más programadores
+.
+Ahora para que esta definición de tipos sea tomada enserio por Python hay que agregar algo mas que solo la sintaxis. Para esto es necesaria otro modulo que no esta en el core de Python, mypy.
+
+## Mypy
+
+En Python existe la libreria mype que nos permite hacer una examinación del código que estamos correindo. Donde nos lanzara los errores de tipo.
+En consola se colocaria la siguiente sintaxis:
+
+> mypy [name_file_py] --check-untyped-defs
