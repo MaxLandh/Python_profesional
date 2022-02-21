@@ -167,3 +167,7 @@ print(next(my_iter))
 # Cuando no quedan datos, la excepción StopIteration es elevada
 
 ```
+Lo que vemos en el ejemplo es que el objeto lista se convierte en un iterable con la función built-in ***iter*** y puede ser iterable con la función interna de Python de next.
+
+Ahora, si queremos crear un iterador desde cero necesitamos crear una clase y dentro de la clase tener dos metodos principales. El método __iter__ y el método __next__. 
+
