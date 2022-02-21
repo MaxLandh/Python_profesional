@@ -387,3 +387,22 @@ my_set3 = my_set1 ^ my_set2
 print(my_set3) >> {2,3,5,6}
 
 ```
+
+## Manejo de fechas
+
+A lo largo de la carrera de programador con Python te vas a topar con que tienes que manejar fechas, tiempos etc. Para esto Python nos ofrece la librería **datetime**. Librería que se encuentra en el core de Python.
+
+### Formtao de fechas
+
+Para darle formato a una fecha hay que aprendernos una tabla si o si para darle formato a una fecha. Podemos encontrar los diferentes tipos de formatos en https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
+
+| Formato | Significado |
+|-------|-------------|
+| %Y | Year |
+| %m | Month |
+| %d | Day |
+| %H | Hour |
+| %M | Minute |
+| %S | Second |
+
+
