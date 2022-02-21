@@ -51,10 +51,12 @@ Ejemplo
 
 Para estructuras de datos complejas como diccionarios, listas o tuplas necesitaremos importar la clase Dict, List, Tuple del modulo typing
 
-> from typing import Dict, List, Tuple
-> lista: List = []
-> diccionario: Dict = {}
-> tupla: Tuple = ()
+```
+from typing import Dict, List, Tuple
+lista: List = []
+diccionario: Dict = {}
+tupla: Tuple = ()
+```
 
 Para definir el tipo de valor que retornara una función se logra con la sintaxis de ->. Veamos
 
@@ -123,3 +125,45 @@ Tambiém aparecen en los decoradores.
 
 ## Decoradores
 
+Un decorador es una función que recibe como parámetro otra función, le añade cosas, la ejecuta y retorna una función diferente. Es una función que le da super poderes a otra función.
+
+```
+def decorador(func):
+    def wrapper():
+        print("Esto se añade a mi función original")
+        func()
+    return wrapper
+
+@decorador
+def saludo():
+    print("Hola")
+
+saludo()
+```
+
+
+## Estructura de datos avanzada
+
+### Iteradores
+
+Los iteradores son una estructura avanzada de datos, para entender de que se tratan los iteradores hay que entender que son los iterables. Los iterables son básicamente todos los objetos que nosotros podemos recorrer con un ciclo.
+
+Un iterable común es una lista, una cadena de texto y hasta un diccionario.
+
+Los iterables son aquellas estructuras de datos divisibles en elementos únicos que podemos recorrer en un ciclo.
+
+Pero lo que sucede cuando, por ejemplo, pasamos por un ciclo una lista de objetos para que pueda ser iterado primero Python debe convertir a la lista en un **iterador**. Es el iterador el que si puede recorrerse dentro del lenguaje.
+
+```
+# Creando un iterador
+
+my_list =[1,2,3,4,5]
+my_iter = iter(my_list)
+
+# Iterando un iterador
+
+print(next(my_iter))
+
+# Cuando no quedan datos, la excepción StopIteration es elevada
+
+```
