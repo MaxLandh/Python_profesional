@@ -396,7 +396,7 @@ A lo largo de la carrera de programador con Python te vas a topar con que tienes
 
 Para darle formato a una fecha hay que aprendernos una tabla si o si para darle formato a una fecha. Podemos encontrar los diferentes tipos de formatos en https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
 
-| Formato | Significado |
+| **Formato** | **Significado** |
 |-|-|
 | %Y | Year |
 | %m | Month |
