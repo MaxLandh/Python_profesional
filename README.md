@@ -382,7 +382,7 @@ Se refiere al conjunto resultante entre dos conjuntos excepto con los elementos 
 my_set1 = {2,3,4}
 my_set2 = {4,5,6}
 
-my_set3 = my_set1 - my_set2
+my_set3 = my_set1 ^ my_set2
 
 print(my_set3) >> {2,3,5,6}
 
