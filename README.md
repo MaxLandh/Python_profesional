@@ -170,5 +170,220 @@ print(next(my_iter))
 Lo que vemos en el ejemplo es que el objeto lista se convierte en un iterable con la función built-in ***iter*** y puede ser iterable con la función interna de Python de next.
 
 Ahora, si queremos crear un iterador desde cero necesitamos crear una clase y dentro de la clase tener dos metodos principales. El método  ```__iter__``` y el método  ```__next__```.
- 
 
+
+```
+class Evennumbers():
+
+    def __init__(self, max=None):
+        self.max = max
+    
+    def __iter__(self):
+        self.num = 0
+        return self
+    
+    def __next__(self):
+        if not self.max or self.num <= self.max:
+            result = self.num
+            self.num += 2
+            return result
+        else:
+            raise StopIteration
+
+
+```
+
+## Generadores 
+
+Hemos visto que crear un iterador desde cero es complicado. Tenemos que usar programación orientada a objetos, usar los doonder de iter y next. Utilizar métodos y atributos. Esto lo sabe Python. Entonces nos da una herramienta útil para estos casos, los **generadores**
+
+Los **generadores** son funciones que guardan un estado. Pero antes de que entremos a su definición más clara, hay que verla como la sintax sugar de los iteradores.
+
+Veamos un ejemplo:
+
+```
+def my_gen():
+
+    print("Hello world")
+    n = 0 
+    yield n
+
+    print("Hello heaven")
+    n = 1 
+    yield n
+
+    print("Hello hell")
+    n = 2
+    yield n
+
+a = my_gen()
+
+print(next(a)) #Hello world
+
+print(next(a)) #Hello heaven
+
+print(next(a)) #Hello hell
+
+print(next(a)) #StopIteration
+
+```
+
+Se define una función la cual tendrá su bloque de código y su scope.
+
+En el ejemplo vemos que imprime un "Hola mundo", luego define una varaible n igual a cero y usa el keyword **yield**
+
+**Yield** es el homólogo de **return**. Recordemos que return es el keyword que finaliza, queramos o no, a la función que estamos definiendo. Pero yield finaliza y pausa la función en ese preciso momenot. Y cuando se vuelva a llamar a dicha función, no iniciara desde el inicio, iniciara donde se pauso con yield. Eso es un generador. Tiene una sintaxis mas clara con respecto a las clases y más entendible.
+
+
+Asi como hay lists comprehensions y dict comprehensions, existen también los generator comprehensions. Igual que como los iteradores, nos ahorran memoria la definir un iterador.
+Un generator comprehension nos ayuda a recorrer una lista sin que se guarde solo cuando nosotros lo llamemos. 
+
+```
+my_list = [1,4,7,9,10]
+
+my_second_list = [x*2 for x in my_list]
+
+my_second_gen = (x*2 for x in my_list) #Generator comprehension
+
+
+```
+
+## Sets
+
+Un set es una colección desordenada de elementos únicos e inmutables
+
+```
+my_set = {3, 4, 5}
+
+my_set2 = {"hola", 23.3, False, True}
+
+my_set3 = {3, 3, 2}
+
+my_set4 = {[1,2,3], 4}  #Alzara un error ya que una lista es un objeto mutable
+
+```
+
+
+Como vimos en la definición de sets, en los ejemplos vemos que el set 1 y 2 los regresa de forma desordenada. El set 3 se repite un número, pero Python interpreta que necesitamos crear un conjunto con los números que le demos entonces elimina los elementos repetidos. Al final, el conjunto 4 no se podrá definir como set debido a que hay un elemento mutable, una lista, que se encuentra adentro.
+
+¿Qué pasa si quiero crear un set vacío? Bueno, para esto necesitamos de la función built-in llamada **set ()**. La cual creara un conjunto vació ya que Python toma las llaves como un diccionario.
+
+```
+empty_set = {}
+print(type(empty_set)) >> <clas 'dict'>
+
+empty_set = set()
+print(type(empty_set)) >> <clas 'set'>
+
+```
+
+### Casting con los sets
+
+Si queremos convertr una estrucutra de datos tipo lista o tupla a una estructura de datos tipo set, realizamos lo siguiente
+
+```
+my_list = [1,1,2,3,4,4,5]
+my_set  = set(my_list)
+print(my_set) >> {1,2,3,4,5}
+
+my_tuple = ("Hola", "Hola", "Hola", 1)
+my_set2 = set(my_tuple)
+print(my_set2) >> {"Hola", 1}
+
+```
+Tenemos una lista de números repetidos, usando la función set convertimos una lista a un set y nos retornara datos únicos. De igual forma para convertir una tupla a un set.
+
+### Añadir elementos a un set
+
+Para poder añadir elementos a un set ya creado tenemos a nuestra disposición dos métodos del objeto set: add()  y update(). 
+
+```
+my_set = {1,2,3}
+
+
+my_set.add(4)
+
+my_set.update([1,2,5])
+
+my_set.update((1,7,2), {6,8})
+
+
+```
+
+### Borrar elementos de un set
+
+Para poder borrar elementos de un set utilizaremos el método **remove** o **discard**. Los dos métodos realizan la misma accion. Pero la gran diferencia es que remove al tratar de eliminar un elemento inexistente en un conjunto nos alcanzara un error del tipo **keyerror**.
+
+
+```
+my_set = {1,2,3,4,5,6,7}
+
+my_set.discard(1)
+
+my_set.remove(2)
+
+my_set.discard(10)
+
+my_set.remove(12) >> #Levanta un error
+
+```
+
+Ahora veamos otros métodos de borrado interesantes. Para poder borrar un elemento aleatorio de un conjunto de datos utilizamos el método **pop** el cual eliminara un elemento de forma aleatoria de un set. Como vemos en el ejemplo. Si queremos borrar todos los datos de un conjunto utilizamos el método **clear**
+
+
+## Operador de sets
+
+### Union
+
+Se refiere a la unión de dos conjuntos de elementos únicos e inmutables, i.e. combinara sus elementos eliminando los repetidos. Para lograr esta unión en Python utilizaremos el operadore pipe |.
+```
+my_set1 = {1,2,3}
+my_set2 = {4,5,6}
+
+my_set3 = my_set1 | my_set2
+
+print(my_set3) >> {1,2,3,4,5,6}
+
+```
+
+### Intersección
+
+Se refiere a la intersección de dos conjuntos en donde el conjunto resultante será los elementos que comparten en común. Para lograr esta operación lo hacemos con el ampersand &.
+
+```
+my_set1 = {2,3,4}
+my_set2 = {4,5,6}
+
+my_set3 = my_set1 & my_set2
+
+print(my_set3) >> {4}
+
+```
+
+### Diferenciación
+
+Es la diferencia que existe entre un conjunto y otro. Se logra con el operador de resta -.
+
+```
+my_set1 = {2,3,4}
+my_set2 = {4,5,6}
+
+my_set3 = my_set1 - my_set2
+
+print(my_set3) >> {2,3}
+
+```
+
+### Difrencia simétrica
+
+Se refiere al conjunto resultante entre dos conjuntos excepto con los elementos que se comparten. Esta operación se puede lograr con el operador circunflejo ^. 
+
+```
+my_set1 = {2,3,4}
+my_set2 = {4,5,6}
+
+my_set3 = my_set1 - my_set2
+
+print(my_set3) >> {2,3,5,6}
+
+```
